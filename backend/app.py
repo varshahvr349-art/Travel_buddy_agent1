@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify , send_from_directory
 from flask_cors import CORS
 
 from langchain.agents import create_agent
@@ -31,10 +31,16 @@ CORS(app)
 
 @app.route("/")
 def home():
-    return {
-        "status": "ok",
-        "message": "TravelBuddy AI backend is running!"
-    }
+    return send_from_directory("../frontend", "index.html")
+
+@app.route("/index.css")
+def css():
+    return send_from_directory("../frontend", "index.css")
+
+
+@app.route("/script.js")
+def javascript():
+    return send_from_directory("../frontend", "script.js")
 
 # STEP 1: INITIALIZE GROQ MODEL
 
@@ -52,7 +58,7 @@ model = ChatGroq(
 
 destination_research_tool = TavilySearch(
     max_results=2,
-    search_depth="advanced",
+    search_depth="basic",
     tavily_api_key=tavily_api_key
 )
 
@@ -80,37 +86,45 @@ def search_flights(origin: str, destination: str, date: str) -> list:
 
     results = search.get_dict()
 
-    return results
+    flights = []
 
+    for flight in results.get("best_flights", [])[:5]:
 
+        price = flight.get("price")
+
+        total_duration = flight.get("total_duration")
+
+        for segment in flight.get("flights", []):
+            flights.append({
+                "airline": segment.get("airline"),
+                "flight_number": segment.get("flight_number"),
+                "departure_time": segment.get("departure_airport", {}).get("time"),
+                "arrival_time": segment.get("arrival_airport", {}).get("time"),
+                "duration": segment.get("duration"),
+                "price": price,
+                "total_duration": total_duration
+            })
+
+    return flights
 
 # STEP 4: SYSTEM PROMPT
 
 
 system_prompt = """
-You are a TravelBuddy assistant that helps travelers plan trips.
+You are TravelBuddy, an AI travel planning assistant.
 
-You have access to these tools:
+Use destination_research_tool to find attractions and travel tips.
+Use search_flights to find flight options.
 
-- destination_research_tool:
-  Research attractions, culture, and travel tips.
+Use IATA codes when appropriate:
+HYD Hyderabad
+GOI Goa
+BOM Mumbai
+DEL Delhi
+BLR Bangalore
 
-- search_flights:
-  Find flight options.
-
-Use IATA airport codes when searching for flights:
-
-HYD = Hyderabad
-GOI = Goa
-BOM = Mumbai
-DEL = Delhi
-BLR = Bangalore
-
-Help the traveler by researching destinations and finding flights.
-
-Present results in a clean, readable format.
-
-Don't use markdown format.
+Give the user a concise travel plan with attractions and flights.
+Do not use markdown.
 """
 
 
