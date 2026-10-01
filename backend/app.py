@@ -29,13 +29,18 @@ serp_api_key = os.getenv("SERPAPI_KEY")
 app = Flask(__name__)
 CORS(app)
 
-
+@app.route("/")
+def home():
+    return {
+        "status": "ok",
+        "message": "TravelBuddy AI backend is running!"
+    }
 
 # STEP 1: INITIALIZE GROQ MODEL
 
 
 model = ChatGroq(
-    model="openai/gpt-oss-120b",
+    model="openai/gpt-oss-20b",
     api_key=groq_api_key,
     temperature=0
 )
@@ -46,7 +51,7 @@ model = ChatGroq(
 
 
 destination_research_tool = TavilySearch(
-    max_results=5,
+    max_results=2,
     search_depth="advanced",
     tavily_api_key=tavily_api_key
 )
