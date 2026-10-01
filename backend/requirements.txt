@@ -5,3 +5,4 @@ langchain
 langchain-tavily
 langchain-groq
 google-search-results
+gunicorn
