@@ -1,0 +1,7 @@
+flask 
+flask-cors 
+python-dotenv
+langchain 
+langchain-tavily
+langchain-groq
+google-search-results

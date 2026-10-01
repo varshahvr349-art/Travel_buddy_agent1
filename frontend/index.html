@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TravelBuddy AI</title>
+
+    <link rel="stylesheet" href="index.css">
+
+</head>
+
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ✈️ TravelBuddy AI
+        </div>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#planner">Plan Trip</a>
+            <a href="#results">Results</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ==================== HERO SECTION ==================== -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Plan Your Perfect Trip
+                <span>with AI</span>
+            </h1>
+
+            <p>
+                Discover amazing destinations, attractions and
+                flight options with your AI travel assistant.
+            </p>
+
+            <a href="#planner" class="hero-button">
+                Start Planning ✈️
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== TRIP PLANNER ==================== -->
+
+    <section class="planner-section" id="planner">
+
+        <div class="section-title">
+
+            <h2>Plan Your Trip</h2>
+
+            <p>
+                Tell TravelBuddy where you want to go.
+            </p>
+
+        </div>
+
+
+        <div class="planner-card">
+
+            <form id="travelForm">
+
+                <!-- FROM -->
+
+                <div class="input-group">
+
+                    <label for="origin">
+                        📍 From
+                    </label>
+
+                    <input
+                        type="text"
+                        id="origin"
+                        placeholder="e.g. Hyderabad"
+                        value="Hyderabad"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SWAP -->
+
+                <div class="swap">
+                    ⇄
+                </div>
+
+
+                <!-- DESTINATION -->
+
+                <div class="input-group">
+
+                    <label for="destination">
+                        🏝️ To
+                    </label>
+
+                    <input
+                        type="text"
+                        id="destination"
+                        placeholder="e.g. Goa"
+                        value="Goa"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="input-group">
+
+                    <label for="date">
+                        📅 Travel Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        value="2026-12-15"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SEARCH BUTTON -->
+
+                <button
+                    type="submit"
+                    class="search-button"
+                    id="searchButton"
+                >
+
+                    <span id="buttonText">
+                        🔍 Search Trip
+                    </span>
+
+                    <span
+                        id="loader"
+                        class="loader"
+                    ></span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== RESULTS ==================== -->
+
+    <section class="results-section" id="results">
+
+        <div class="section-title">
+
+            <h2>Your Travel Plan</h2>
+
+            <p>
+                AI-powered recommendations for your trip.
+            </p>
+
+        </div>
+
+
+        <div class="results-container">
+
+
+            <!-- AI RESPONSE -->
+
+            <div
+                id="aiResult"
+                class="result-card"
+            >
+
+                <div class="card-icon">
+                    🤖
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        AI Travel Plan
+                    </h3>
+
+                    <p id="aiResponse">
+                        Your AI travel plan will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ATTRACTIONS -->
+
+            <div class="result-card">
+
+                <div class="card-icon">
+                    🏖️
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Top Attractions
+                    </h3>
+
+                    <p>
+                        Your AI-researched attractions
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FLIGHTS -->
+
+            <div class="result-card">
+
+                <div class="card-icon">
+                    ✈️
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Flight Options
+                    </h3>
+
+                    <p>
+                        Flight options and prices
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRAVEL TIPS -->
+
+            <div class="result-card">
+
+                <div class="card-icon">
+                    💡
+                </div>
+
+                <div class="card-content">
+
+                    <h3>
+                        Travel Tips
+                    </h3>
+
+                    <p>
+                        Helpful travel tips will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <footer>
+
+        <p>
+            © 2026 TravelBuddy AI.
+            Plan smarter. Travel better. ✈️
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

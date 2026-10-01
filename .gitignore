@@ -1,0 +1,19 @@
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Private keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local Python environment and generated files
+venv/
+.venv/
+__pycache__/
+*.py[cod]
